@@ -1,8 +1,8 @@
 #include <stdio.h>
 
-void readScores(scores, &count)
-void displayScores(scores, &count);
-void calcHistogram(scores, &count);
+void readScores();
+void displayScores();
+void calcHistogram();
 
 int main(){
   int scores[100] = {0}; // array of elements

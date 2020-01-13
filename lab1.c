@@ -12,7 +12,6 @@ int main(){
   readScores(scores, &count);
   displayScores(scores, &count);
   calcHistogram(scores, &count);
-  
 }
 
 struct freq{

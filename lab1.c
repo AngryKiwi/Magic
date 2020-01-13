@@ -1,16 +1,24 @@
 #include <stdio.h>
 
+void readScores(scores, &count)
+void displayScores(scores, &count);
+void calcHistogram(scores, &count);
+
+int main(){
+  int scores[100] = {0}; // array of elements
+  int count = 0; // count to count how many elements are in the array
+    
+  // passing by reference, parameters to readScores
+  readScores(scores, &count);
+  displayScores(scores, &count);
+  calcHistogram(scores, &count);
+  
+}
+
 struct freq{
   int scoreNum;
   int scoreFrequency; 
 };
-
-
-
-
-
-
-
 
 // readScores takes the file that has the scores and puts the elements in the array
 //     while keeping track of the count of the elements
@@ -20,7 +28,6 @@ void readScores(int *pScores, int *pCount){
      (*pCount)++; // incrementing count
    }
  }
-
 
 // displayScores takes the information from readScores and displays the scores
 void displayScores(int *pScores, int *pCount){
@@ -47,19 +54,3 @@ void calcHistogram(int *pScores, int *pCount){
     // printf("%d %d\n",hist[i].scoreNum, hist[i].scoreFrequency);
   }
 }
-
-
-
-
-
-int main(){
-  int scores[100] = {0}; // array of elements
-  int count = 0; // count to count how many elements are in the array
-    
-  // passing by reference, parameters to readScores
-  readScores(scores, &count);
-  displayScores(scores, &count);
-  calcHistogram(scores, &count);
-  
-}
-

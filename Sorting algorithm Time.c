@@ -1,8 +1,10 @@
-
-import java.util.Arrays;
+/**
+ * HW 2 CODE 1/24/2020
+ * @author tevin
+ */
 import java.util.Random;
 
-public class selection {
+public class sortingmain {
 
     static void selectionSort(int array[]) {
         for (int j = 2; j < array.length; j++) {
@@ -17,44 +19,12 @@ public class selection {
         }
     }
 
-    static void merge(int array[], int p, int q, int r) {
-        int i, j, k;
-        
-        
-        int n1 = q - p + 1;
-        int n2 = r - q;
-
-        // Temp arrays
-        int L[] = new int[n1];
-        int R[] = new int[n2];
-
-        //Copy data to temp arrays L[] and R[] 
-        for (i = 1; i < n1; i++) {
-            L[i] = array[p + i - 1];
-        }
-        for (j = 1; j < n2; j++) {
-            R[j] = array[q + j];
-        }
-
-        i = 1; // Initial index of first subarray 
-        j = 1; // Initial index of second subarray 
-        for (k = p; k < r; k++) {
-            if (L[i] <= R[j]) {
-                array[k] = L[i];
-                i++;
-            } else {
-                array[k] = R[j];
-                j++;
-            }
-        }
-    }
-
     static void mergeSort(int array[], int p, int r) {
         if (p < r) {
 
-            int q = ((p + r) / 2);
+            int q = (p + r) / 2;
 
-            // Sort first and second halves 
+            // sort the left array and the right array
             mergeSort(array, p, q);
             mergeSort(array, q + 1, r);
 
@@ -62,7 +32,42 @@ public class selection {
         }
     }
 
+    static void merge(int arr[], int p, int q, int r) {
+        int n1 = q - p + 1;
+        int n2 = r - q;
+
+        // temp arrays left and right
+        int L[] = new int[n1];
+        int R[] = new int[n2];
+
+        // copy array data to left and right arrays
+        for (int i = 0; i < n1; i++) {
+            L[i] = arr[p + i];
+        }
+        for (int j = 0; j < n2; j++) {
+            R[j] = arr[q + j + 1];
+        }
+
+        int i = 0;
+        int j = 0;
+        int k = p;
+        
+        // makes sure i is less than n1 and j is less than n2
+        while (i < n1 && j < n2) {
+            if (L[i] <= R[j]) {
+                arr[k] = L[i]; // update the array so it is sorted
+                i++;
+            } else {
+                arr[k] = R[j]; // update the array so it is sorted
+                j++;
+            }
+            k++;
+        }
+    }
+
     public static void main(String[] args) {
+        System.out.println("n elements, selection time, merge time");
+
         for (int j = 1000; j <= 10000; j += 1000) {
             // Initialize an array with the intervals
             int[] array = new int[j];
@@ -71,25 +76,25 @@ public class selection {
             for (int i = 0; i < array.length; i++) {
                 //  array[i] = i;
                 array[i] = RandNumbers.nextInt(100000);
-                // System.out.println(array[i]);
             }
 
             {
+                System.out.print(array.length + ", ");
                 long start = System.nanoTime();
                 selectionSort(array);
-
-                //   for (int i = 0; i < array.length; ++i) 
-                //     System.out.println(array[i] + " "); 
+                // for (int i = 0; i < array.length; ++i) 
+                // System.out.println(array[i] + " "); // testing sorted order
                 long end = System.nanoTime();
-                // System.out.println(end - start); // uncomment to see the runtime
+               System.out.print(end - start + ", "); // uncomment to see the runtime
             }
 
             {
                 long start = System.nanoTime();
-                mergeSort(array, 1, array.length);
 
-                //   for (int i = 0; i < array.length; ++i) 
-                //     System.out.println(array[i] + " "); 
+                mergeSort(array, 0, array.length - 1);
+//                for (int i = 0; i < array.length; ++i) {
+//                    System.out.println(array[i]); // testing sorted order
+//                }
                 long end = System.nanoTime();
                 System.out.println(end - start); // uncomment to see the runtime
             }

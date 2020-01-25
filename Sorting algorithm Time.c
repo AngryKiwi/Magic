@@ -1,5 +1,7 @@
+
 /**
  * HW 2 CODE 1/24/2020
+ *
  * @author tevin
  */
 import java.util.Random;
@@ -51,7 +53,7 @@ public class sortingmain {
         int i = 0;
         int j = 0;
         int k = p;
-        
+
         // makes sure i is less than n1 and j is less than n2
         while (i < n1 && j < n2) {
             if (L[i] <= R[j]) {
@@ -66,17 +68,41 @@ public class sortingmain {
     }
 
     public static void main(String[] args) {
-        System.out.println("n elements, selection time, merge time");
+        System.out.println("n elements, selection time, sorted selection time, merge time, sorted merge time");
 
         for (int j = 1000; j <= 10000; j += 1000) {
             // Initialize an array with the intervals
             int[] array = new int[j];
+            int[] sortedArray = new int[j];
             //Populate array
             Random RandNumbers = new Random();
             for (int i = 0; i < array.length; i++) {
                 //  array[i] = i;
                 array[i] = RandNumbers.nextInt(100000);
             }
+            for (int i = 0; i < array.length; i++) {
+                //  array[i] = i;
+                sortedArray[i] = i;
+            }
+
+            /************************************************
+             * uncomment to see that the code is 
+             * sorting the random integers in the array
+             * using merge sort
+             ************************************************/
+            
+//            {
+//                for (int i = 0; i < array.length; ++i) {
+//                    System.out.print(array[i] + ", "); // testing sorted order
+//                }
+//                System.out.println();
+//
+//                mergeSort(array, 0, array.length - 1);
+//                for (int i = 0; i < array.length; ++i) {
+//                    System.out.print(array[i] + ", "); // testing sorted order
+//                }
+//                System.out.println();
+//            }
 
             {
                 System.out.print(array.length + ", ");
@@ -85,13 +111,31 @@ public class sortingmain {
                 // for (int i = 0; i < array.length; ++i) 
                 // System.out.println(array[i] + " "); // testing sorted order
                 long end = System.nanoTime();
-               System.out.print(end - start + ", "); // uncomment to see the runtime
+                System.out.print(end - start + ", "); // uncomment to see the runtime
+            }
+            {
+                long start = System.nanoTime();
+                selectionSort(sortedArray);
+                //    for (int i = 0; i < sortedArray.length; ++i) 
+                //   System.out.println(sortedArray[i] + " "); // testing sorted order
+                long end = System.nanoTime();
+                System.out.print(end - start + ", "); // uncomment to see the runtime
             }
 
             {
                 long start = System.nanoTime();
 
                 mergeSort(array, 0, array.length - 1);
+//                for (int i = 0; i < array.length; ++i) {
+//                    System.out.println(array[i]); // testing sorted order
+//                }
+                long end = System.nanoTime();
+                System.out.print(end - start + ", "); // uncomment to see the runtime
+            }
+            {
+                long start = System.nanoTime();
+
+                mergeSort(sortedArray, 0, array.length - 1);
 //                for (int i = 0; i < array.length; ++i) {
 //                    System.out.println(array[i]); // testing sorted order
 //                }

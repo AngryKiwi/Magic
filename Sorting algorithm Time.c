@@ -8,7 +8,7 @@ import java.util.Random;
 
 public class sortingmain {
 
-    static void insertionSort(int array[]) {
+   static void insertionSort(int array[]) {
         for (int j = 2; j < array.length; j++) {
             int key = array[j];
             int i = j - 1;
@@ -68,9 +68,9 @@ public class sortingmain {
     }
 
     public static void main(String[] args) {
-        System.out.println("n elements, selection time, sorted selection time, merge time, sorted merge time");
+        System.out.println("n elements, insertion time, sorted insertion time, merge time, sorted merge time");
 
-        for (int j = 1000; j <= 10000; j += 1000) {
+        for (int j = 1000; j <= 30000; j += 1000) {
             // Initialize an array with the intervals
             int[] array = new int[j];
             int[] sortedArray = new int[j];
@@ -103,7 +103,11 @@ public class sortingmain {
 //                }
 //                System.out.println();
 //            }
-
+            /************************************************
+             * comment the rest of the lines to see that the code is 
+             * sorting the random integers in the array
+             * using merge sort
+             ************************************************/
             {
                 System.out.print(array.length + ", ");
                 long start = System.nanoTime();

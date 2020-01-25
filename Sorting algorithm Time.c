@@ -8,7 +8,7 @@ import java.util.Random;
 
 public class sortingmain {
 
-    static void selectionSort(int array[]) {
+    static void insertionSort(int array[]) {
         for (int j = 2; j < array.length; j++) {
             int key = array[j];
             int i = j - 1;
@@ -102,46 +102,3 @@ public class sortingmain {
 //                    System.out.print(array[i] + ", "); // testing sorted order
 //                }
 //                System.out.println();
-//            }
-
-            {
-                System.out.print(array.length + ", ");
-                long start = System.nanoTime();
-                selectionSort(array);
-                // for (int i = 0; i < array.length; ++i) 
-                // System.out.println(array[i] + " "); // testing sorted order
-                long end = System.nanoTime();
-                System.out.print(end - start + ", "); // uncomment to see the runtime
-            }
-            {
-                long start = System.nanoTime();
-                selectionSort(sortedArray);
-                //    for (int i = 0; i < sortedArray.length; ++i) 
-                //   System.out.println(sortedArray[i] + " "); // testing sorted order
-                long end = System.nanoTime();
-                System.out.print(end - start + ", "); // uncomment to see the runtime
-            }
-
-            {
-                long start = System.nanoTime();
-
-                mergeSort(array, 0, array.length - 1);
-//                for (int i = 0; i < array.length; ++i) {
-//                    System.out.println(array[i]); // testing sorted order
-//                }
-                long end = System.nanoTime();
-                System.out.print(end - start + ", "); // uncomment to see the runtime
-            }
-            {
-                long start = System.nanoTime();
-
-                mergeSort(sortedArray, 0, array.length - 1);
-//                for (int i = 0; i < array.length; ++i) {
-//                    System.out.println(array[i]); // testing sorted order
-//                }
-                long end = System.nanoTime();
-                System.out.println(end - start); // uncomment to see the runtime
-            }
-        }
-    }
-}

@@ -102,3 +102,46 @@ public class sortingmain {
 //                    System.out.print(array[i] + ", "); // testing sorted order
 //                }
 //                System.out.println();
+//            }
+
+            {
+                System.out.print(array.length + ", ");
+                long start = System.nanoTime();
+                insertionSort(array);
+                // for (int i = 0; i < array.length; ++i) 
+                // System.out.println(array[i] + " "); // testing sorted order
+                long end = System.nanoTime();
+                System.out.print(end - start + ", "); // uncomment to see the runtime
+            }
+            {
+                long start = System.nanoTime();
+                insertionSort(sortedArray);
+                //    for (int i = 0; i < sortedArray.length; ++i) 
+                //   System.out.println(sortedArray[i] + " "); // testing sorted order
+                long end = System.nanoTime();
+                System.out.print(end - start + ", "); // uncomment to see the runtime
+            }
+
+            {
+                long start = System.nanoTime();
+
+                mergeSort(array, 0, array.length - 1);
+//                for (int i = 0; i < array.length; ++i) {
+//                    System.out.println(array[i]); // testing sorted order
+//                }
+                long end = System.nanoTime();
+                System.out.print(end - start + ", "); // uncomment to see the runtime
+            }
+            {
+                long start = System.nanoTime();
+
+                mergeSort(sortedArray, 0, array.length - 1);
+//                for (int i = 0; i < array.length; ++i) {
+//                    System.out.println(array[i]); // testing sorted order
+//                }
+                long end = System.nanoTime();
+                System.out.println(end - start); // uncomment to see the runtime
+            }
+        }
+    }
+}

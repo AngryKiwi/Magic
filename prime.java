@@ -1,5 +1,5 @@
 
-class GFG {
+class prime
 
     public static void main(String[] args) {
         long startTime = System.currentTimeMillis();

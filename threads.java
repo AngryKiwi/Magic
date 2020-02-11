@@ -1,50 +1,65 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/**
- *
- * @author tevin
- */
-public class threads {
+/**************************************************
+ * Author: Tevin De La Garza
+ * Date: 2/10/2020
+ * 
+ * Assignment: Use threads to calculate prime
+ *  numbers from a certain range. Depending on 
+ *  how many threads one can use, this will divide
+ *  up the range and process the prime numbers
+ *  all at once.
+ * 
+ *************************************************/
+public class threading {
 
     public static void main(String[] args) {
-        int nthreads = 4;
-        int count = 0;
-        //ranges to find primes
-        int min = 10;
-        int max = 100;
         
+        // Threads wanting to use and range of prime numbers.
+        int nthreads = 8;
+        int min = 1000;
+        int max = 1000000;
+
         int start = 0;
         int stop = 0;
-        
+        int totalCount = 0;
+
+        // Take the run time of algorithm.
         long startTime = System.currentTimeMillis();
+        
+        // Create thread objects and primes objects.
         Thread[] ths = new Thread[nthreads];
-        for (int i = 0; i < nthreads; i++){
-            start = (((max/nthreads)*i)+min); 
-            stop = ((max/nthreads)*(i+1))+min;
-            if(stop > max){
+        primes[] prim = new primes[nthreads];
+
+        for (int i = 0; i < nthreads; i++) {
+            // Finding the range of each threads with an offset of min.
+            start = (((max / nthreads) * i) + min);
+            stop = ((max / nthreads) * (i + 1)) + min;
+            
+            // Sets stop to be the max value and offset does not affect it.
+            if (stop > max) {
                 stop = max;
             }
-            prime prim = new prime(start, stop, min);
-            Thread th = new Thread(prim);
-            ths[i] = th;
-            th.start();
-            System.out.println("Thread: " + i + " \n Range: " + start + " - " + stop);
-           
+            
+            
+            prim[i] = new primes(start, stop);
+            ths[i] = new Thread(prim[i]);
+            ths[i].start();
+
         }
         for (int i = 0; i < nthreads; i++) {
             try {
                 ths[i].join();
+                // totalCount += prim[i].primes.size();
+                totalCount += prim[i].count;
+                System.out.println("Thread: " + i
+                        + "\nRange: " + prim[i].start + " - " + prim[i].stop
+                        + "\nCount: " + prim[i].count + "\n");
             } catch (InterruptedException e) {
-// TODO Auto-generated catch block
+            // TODO Auto-generated catch block
                 e.printStackTrace();
             }  // blocking operation
-          //  System.out.println(count);
+            //  System.out.println(count);
         }
         long endTime = System.currentTimeMillis();
-        System.out.println(endTime - startTime);
+        System.out.println("Total Count: " + totalCount + "\nRunTime(ms): " + (endTime - startTime));
     }
 }

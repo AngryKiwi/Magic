@@ -10,49 +10,68 @@ import java.util.ArrayList;
  *
  * @author tevin
  */
-public class prime implements Runnable {
+public class primes implements Runnable {
 
     int start;
     int stop;
     int count;
-    int min;
+    ArrayList<Integer> primes = new ArrayList<Integer>();
 
-    public prime(int start, int stop, int min) {
+    public primes(int start, int stop) {
         this.start = start;
         this.stop = stop;
-        this.min = min;
+        this.count = 0;
     }
 
     public void run() {
+        // int count = 0;
         try {
-            for (int i = start; i < stop; i++) {
-                if (isPrime(i)) {
-                   // System.out.println(i);
+            for (int n = start; n < stop; n++) {
+                if (isPrime(n)) {
+                    //  primes.add(n);
+                    //System.out.print(n + " ");
+                    //      System.out.println(n);
                     count++;
                 }
             }
-            System.out.println(count);
             Thread.sleep(2);
         } catch (Exception e) {
             e.printStackTrace();
         }
+
     }
 
-    boolean isPrime(int n) {
-        boolean primeNum = true;
-        
-        if(n < 2){
-            primeNum = false;
-        }
-        
-        for (int i = 2; i < n; i++) {
-            if (n % i == 0) {
-                primeNum = false;
-            }
-            if( n == 4)
-                primeNum = false;
-        }
-        return primeNum;
+    public static boolean isPrime(int num){
+    if ( num > 2 && num%2 == 0 ) {
+       // System.out.println(num + " is not prime");
+        return false;
     }
+    int top = (int)Math.sqrt(num) + 1;
+    for(int i = 3; i < top; i+=2){
+        if(num % i == 0){
+            //System.out.println(num + " is not prime");
+            return false;
+        }
+    }
+    //System.out.println(num + " is prime");
+    return true; 
+}
+//    boolean isPrime(int n) {
+//        boolean primeNum = true;
+//
+//        if (n < 2) {
+//            primeNum = false;
+//        }
+//
+//        for (int i = 2; i < n; i++) {
+//            if (n % i == 0) {
+//                primeNum = false;
+//            }
+//            if (n == 4) {
+//                primeNum = false;
+//            }
+//        }
+//        return primeNum;
+//    }
 
 }

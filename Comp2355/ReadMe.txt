@@ -1,0 +1,1 @@
+This class is interesting and will teach me alot. However, it is proving to be time consuming and tedious work.
